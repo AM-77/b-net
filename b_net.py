@@ -28,10 +28,11 @@ def add_bot(host, uname, pswd):
 def execute_cmd(cmd):
     for bot in botnets:
         send = bot.send_cmd(cmd)
-        print('[+] Bot: ' + bot.uname + '@' + bot.host + '~ ' + send)
+        print('[+] Bot: ' + bot.uname + '@' + bot.host + '$ ' )
+        print(send)
 
 # Testing ...
 add_bot('', '', '')
-execute_cmd('ls -1alh')
+execute_cmd('pwd')
 
 

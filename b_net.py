@@ -47,5 +47,6 @@ while True:
 	if(respond == "y" || respond == "Y"):
 		break
 
-
-execute_cmd('pwd')
+while True:
+	command = raw_input(">>$ ")
+	execute_cmd(command)

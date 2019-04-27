@@ -1,7 +1,7 @@
 from pexpect import pxssh
 import getpass
 from os import system, name
-
+import sys
 
 
 
@@ -54,9 +54,8 @@ def add_bot(host, uname, pswd):
 
 def execute_cmd(cmd):
     for bot in botnets:
-        send = bot.send_cmd(cmd)
-        print('[+] Bot: ' + bot.uname + '@' + bot.host + '$ ' )
-        print(send)
+        data = bot.send_cmd(cmd)
+        print('[+] Bot: ' + bot.uname + '@' + bot.host + '$ ' + data.decode() )
 
 def clear():   
     # for windows 
@@ -69,15 +68,15 @@ def clear():
 
 print(b_net)
 while True:
-	print("Adding new bot:")
+	print("[+] Adding new bot:")
 	host = input("\thostname: ")
 	uname = input("\tusername: ")
 	pswd = getpass.getpass("\tpassword: ")
 
 	add_bot(host, uname, pswd)
 	
-	print("new bot was added successfully.\n")
-	respond = input("\tadd new bot ? y/n ? : ")
+	print("[+] New bot was added successfully.\n")
+	respond = input("[?] Add new bot ? y/n ? : ")
 
 	if(respond == "n" or respond == "N"):
 		break

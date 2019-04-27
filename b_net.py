@@ -1,4 +1,5 @@
 from pexpect import pxssh
+import getpass
 
 class Bot:
     def __init__(self, host, uname, pswd):
@@ -31,8 +32,20 @@ def execute_cmd(cmd):
         print('[+] Bot: ' + bot.uname + '@' + bot.host + '$ ' )
         print(send)
 
-# Testing ...
-add_bot('', '', '')
+
+while True:
+	print("Adding new bot: \n")
+	host = raw_input("\thostname: ")
+	uname = raw_input("\tusername:  ")
+	pswd = getpass.getpass("\tpassword: ")
+
+	add_bot(host, uname, pswd)
+	
+	print("new bot was added successfully.\n")
+	respond = raw_input("\tadd new bot ? y/n ? : ")
+
+	if(respond == "y" || respond == "Y"):
+		break
+
+
 execute_cmd('pwd')
-
-

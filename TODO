@@ -1,6 +1,6 @@
 #TODO:
 
-1- Handel intrupt exception
+//1- Handel intrupt exception
 2- Create a menu options with exit option
 3- Handel the cases were login is unauthorized "host, uname or pswd are wrong ..."
 4- Handel the yes or no answer in the adding loop "the case were the resopnd is not yes nor no ..."  

@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from pexpect import pxssh
 import getpass
 from os import system, name
@@ -82,9 +84,9 @@ while True:
 print(b_net)
 while True:
     try:
-	    command = input(">>$ ")
-	    execute_cmd(command)
-	except KeyboardInterrupt:
-        print('^C\nBye.\n')
+        command = input(">>$ ")
+        execute_cmd(command)
+    except KeyboardInterrupt :
+        print('\nBye.')
         sys.exit()   
         

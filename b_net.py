@@ -3,8 +3,6 @@ import getpass
 from os import system, name
 import sys
 
-
-
 b_net = """ 
 
 
@@ -83,5 +81,10 @@ while True:
 		
 print(b_net)
 while True:
-	command = input(">>$ ")
-	execute_cmd(command)
+    try:
+	    command = input(">>$ ")
+	    execute_cmd(command)
+	except KeyboardInterrupt:
+        print('^C\nBye.\n')
+        sys.exit()   
+        

@@ -79,17 +79,20 @@ def clear():
 
 
 print(b_net)
-
-while True:
-    print("[+] Adding new bot:\n-------------------")
-    host = input("hostname: ")
-    uname = input("username: ")
-    pswd = getpass.getpass("password: ")
-    add_bot(host, uname, pswd)
-    
-    respond = input("[?] Add new bot Y/N ? : ")
-    if(respond == "n" or respond == "N"):
-        break
+try:
+    while True:
+        print("[+] Adding new bot:\n-------------------")
+        host = input("hostname: ")
+        uname = input("username: ")
+        pswd = getpass.getpass("password: ")
+        add_bot(host, uname, pswd)
+        
+        respond = input("[?] Add new bot Y/N ? : ")
+        if(respond == "n" or respond == "N"):
+            break
+except KeyboardInterrupt :
+    print('\nBye.')
+    sys.exit() 
 		
 print(b_net)
 while True:

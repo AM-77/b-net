@@ -31,7 +31,11 @@ class Bot:
         self.host = host
         self.uname = uname
         self.pswd = pswd
-        self.session = self.ssh()
+        try:
+            self.session = self.ssh()
+        except KeyboardInterrupt :
+            print('\nBye.')
+            sys.exit()
 
     def ssh(self):
         try:
@@ -39,7 +43,7 @@ class Bot:
             bot.login(self.host, self.uname, self.pswd)
             return bot
         except:
-            print('[!] There was an error in login')
+            return -1
 
     def send_cmd(self, cmd):
         self.session.sendline(cmd)
@@ -47,39 +51,45 @@ class Bot:
         return self.session.before
 
 
+
 botnets = []
 
 def add_bot(host, uname, pswd):
-    botnets.append(Bot(host, uname, pswd))
+    try:
+        b = Bot(host, uname, pswd)
+        if(b.session != -1):
+            botnets.append(Bot(host, uname, pswd))
+            print("[+] New bot was added successfully.\n")
+        else:
+            print('[!] Credentials error.')
+    except KeyboardInterrupt :
+        print('\nBye.')
+        sys.exit()
 
 def execute_cmd(cmd):
     for bot in botnets:
         data = bot.send_cmd(cmd)
         print('[+] Bot: ' + bot.uname + '@' + bot.host + '$ ' + data.decode() )
 
-def clear():   
-    # for windows 
+def clear():    
     if name == 'nt': 
         _ = system('cls') 
-    # for mac and linux(here, os.name is 'posix') 
     else: 
         _ = system('clear')
 
 
 print(b_net)
+
 while True:
-	print("[+] Adding new bot:")
-	host = input("\thostname: ")
-	uname = input("\tusername: ")
-	pswd = getpass.getpass("\tpassword: ")
-
-	add_bot(host, uname, pswd)
-	
-	print("[+] New bot was added successfully.\n")
-	respond = input("[?] Add new bot ? y/n ? : ")
-
-	if(respond == "n" or respond == "N"):
-		break
+    print("[+] Adding new bot:\n-------------------")
+    host = input("hostname: ")
+    uname = input("username: ")
+    pswd = getpass.getpass("password: ")
+    add_bot(host, uname, pswd)
+    
+    respond = input("[?] Add new bot Y/N ? : ")
+    if(respond == "n" or respond == "N"):
+        break
 		
 print(b_net)
 while True:
